@@ -42,3 +42,28 @@ img{
     border-color: rgb(41, 80, 115);
     cursor: pointer;
 }
+
+.form{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+}
+input{
+    padding: 10px;
+}
+
+.add-button{
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid grey;
+    background-color: greenyellow;
+    color:rgb(49, 40, 21);
+}
+.cancel-button{
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid grey;
+    background-color: rgb(255, 161, 47);
+    color:rgb(49, 40, 21);
+}

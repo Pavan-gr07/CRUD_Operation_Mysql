@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [books, setBooks] = useState();
-  console.log(books, "books");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,6 +18,20 @@ const Home = () => {
     };
     fetchData();
   }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      const response = await axios.delete("http://localhost:8800/books/" + id);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleUpdate = async (id) => {
+    console.log(id, "id--");
+    navigate(`/edit/${id}`);
+  };
+
   return (
     <div>
       <h1>Pavan Book Shop</h1>
@@ -29,8 +43,12 @@ const Home = () => {
               <h2>{data?.title}</h2>
               <p>{data?.description}</p>
               Price: <span>{data?.price}</span>
-              <button className="delete">Delete</button>
-              <button className="update">Update</button>
+              <button className="delete" onClick={() => handleDelete(data?.id)}>
+                Delete
+              </button>
+              <button className="update" onClick={() => handleUpdate(data?.id)}>
+                Update
+              </button>
             </div>
           );
         })}
